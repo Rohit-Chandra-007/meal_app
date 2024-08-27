@@ -7,6 +7,7 @@ class CategoryGridItem extends StatelessWidget {
     required this.category,
     required this.onSelectCategory,
   });
+
   final Category category;
   final void Function() onSelectCategory;
 
@@ -31,6 +32,8 @@ class CategoryGridItem extends StatelessWidget {
         ),
         child: Text(
           category.title,
+          //softWrap: true,
+          overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: Theme.of(context).colorScheme.onSurface,
               ),
