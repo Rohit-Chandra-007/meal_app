@@ -10,12 +10,12 @@ class IngredientWidget extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true, // Important for SingleChildScrollView
       physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
+      //padding: EdgeInsets.zero,
       itemCount: meal.ingredients.length,
 
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 10,
+        crossAxisSpacing: 15,
         mainAxisExtent: 45,
       ),
 
