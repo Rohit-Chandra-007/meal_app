@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/model/meal.dart';
+import 'package:meal_app/widgets/ingredient_widget.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   final Meal meal;
@@ -53,13 +54,9 @@ class MealDetailsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 14,
                   ),
-                  for (final ingredient in meal.ingredients)
-                    Text(
-                      ingredient,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                    ),
+                  IngredientWidget(
+                    meal: meal,
+                  ),
                   const SizedBox(
                     height: 14,
                   ),
@@ -115,39 +112,6 @@ class MealDetailsScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class MyGridView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2, // Number of columns
-      children: List.generate(6, (index) {
-        return buildGridItem(index);
-      }),
-    );
-  }
-
-  Widget buildGridItem(int index) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Text(
-            '•', // Bullet character
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(width: 10), // Space between bullet and text
-          Expanded(
-            child: Text(
-              'Item $index',
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        ],
       ),
     );
   }
