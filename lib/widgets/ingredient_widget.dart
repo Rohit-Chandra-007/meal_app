@@ -14,10 +14,10 @@ class IngredientWidget extends StatelessWidget {
       itemCount: meal.ingredients.length,
 
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 15,
-        mainAxisExtent: 45,
-      ),
+          crossAxisCount: 3,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 10,
+          childAspectRatio: 4 / 2),
 
       itemBuilder: (context, index) {
         return Row(
