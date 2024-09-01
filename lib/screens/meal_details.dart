@@ -14,6 +14,9 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+    bool isMealFavorite = favoriteMeals.contains(meal);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
@@ -34,7 +37,19 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.star),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween(begin: 0.7, end: 1.0).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isMealFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isMealFavorite),
+              ),
+            ),
           )
         ],
       ),
@@ -43,11 +58,14 @@ class MealDetailsScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              meal.imageUrl,
-              fit: BoxFit.cover,
-              height: 300,
-              width: double.infinity,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                fit: BoxFit.cover,
+                height: 300,
+                width: double.infinity,
+              ),
             ),
             const SizedBox(
               height: 14,
